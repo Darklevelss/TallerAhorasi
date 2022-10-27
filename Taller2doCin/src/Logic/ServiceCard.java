@@ -44,13 +44,17 @@ public class ServiceCard {
     public boolean call(String number,short minutes){return false;}
     public Card[] getCards(){return null;}
     public Card deleteCard(String number){
+        Card deletedCard=null;
         for (var i=0;i<cards.length;i++){
+
             if(cards[i].getNumber().equals(number)){
-                Card deletedCard=cards[i];
-                cards[i]=null;
+                deletedCard=cards[i];
+                for (var j=i;j< cards.length;j++){
+                    cards[i]=cards[i++];
+                }
 
             }
         }
 
-        return null;}
+        return deletedCard;}
 }
