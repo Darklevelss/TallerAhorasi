@@ -1,6 +1,6 @@
 package Logic;
 
 public interface ActionsCard {
-    public double recharge(double charge);
-    public boolean  call(short minutes);
+     double recharge(double charge);
+   boolean  call(short minutes);
 }

@@ -6,17 +6,20 @@ public class CardInternational extends Card{
     private float percentageDiscount;
     public CardInternational(String number,float percentageDiscount) {
         super(number);
+        this.percentageDiscount=percentageDiscount;
     }
 
     @Override
     public double recharge(double charge) {
-
-        return 0;
+        this.residue+=charge;
+        return this.residue;
     }
 
     @Override
     public boolean call(short minutes) {
-        return false;
+        this.residue-=minutes*VALUE_MINUTE;
+        this.minutes+=minutes;
+        return true;
     }
     public float getPercentageDiscount() {
         return percentageDiscount;

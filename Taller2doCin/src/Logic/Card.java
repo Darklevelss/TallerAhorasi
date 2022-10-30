@@ -4,8 +4,8 @@ package Logic;
 
 public abstract class Card  implements ActionsCard{
     private String number;
-    private short minutes;
-    private double residue;
+    protected short minutes;
+    protected double residue;
 
     public Card(String number) {
 
