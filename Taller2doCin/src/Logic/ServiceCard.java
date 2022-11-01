@@ -13,13 +13,13 @@ public class ServiceCard {
     }
 
     public Card findCard(String number){
-        if (cards[0]!=null) {
+
             for (int i = 0; i < cards.length; i++) {
-                if (number.equals(cards[i].getNumber())) {
+                if (cards[i]!=null&&number.equals(cards[i].getNumber())) {
                     return cards[i];
                 }
             }
-        }
+
         return null ;
     }
     public boolean addCard(Card card){
@@ -28,12 +28,13 @@ public class ServiceCard {
             for (int i=0;i< cards.length;i++){
                 if (cards[i]==null){
                     cards[i]=card;
-                    return true;
-                }else{
+                }
+                else if(i> cards.length-2){
                     int newCapacity= cards.length+(cards.length/2);
                     cards=Arrays.copyOf(cards,newCapacity);
                     cards[i+1]=card;
                 }
+                return true;
             }
         }
         return false;
