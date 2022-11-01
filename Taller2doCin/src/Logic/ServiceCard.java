@@ -23,17 +23,21 @@ public class ServiceCard {
         return null ;
     }
     public boolean addCard(Card card){
-
+        boolean flagger=true;
+        int i;
         if (findCard(card.getNumber())==null){
-            for (int i=0;i< cards.length;i++){
+            for ( i=0;i< cards.length;i++){
                 if (cards[i]==null){
                     cards[i]=card;
+                    return true;
                 }
-                else if(i> cards.length-2){
-                    int newCapacity= cards.length+(cards.length/2);
-                    cards=Arrays.copyOf(cards,newCapacity);
-                    cards[i+1]=card;
-                }
+            }
+
+            if (flagger){
+                int oldLength= cards.length;
+            int newCapacity= cards.length+(cards.length/2);
+            cards=Arrays.copyOf(cards,newCapacity);
+            cards[oldLength]=card;
                 return true;
             }
         }
@@ -58,17 +62,23 @@ public class ServiceCard {
         return clone ;}
     public Card deleteCard(String number){
         Card deletedCard=null;
-        for (var i=0;i<cards.length;i++){
-
-            if(cards[i].getNumber().equals(number)){
+        int pos;
+        Card[]newArr;
+       /* for (var i=0;i<cards.length;i++){
+            if(cards[i].getNumber().equalsIgnoreCase(number)){
                 deletedCard=cards[i];
-                for (var j=i;j< cards.length;j++){
-                    cards[i]=cards[i++];
-                }
 
             }
-        }
+        }*/
+        for (int i=0;i< cards.length;i++) {
+            if (cards[i].getNumber().equalsIgnoreCase(number)) {
 
+                Card[] arrDestination = new Card[cards.length - 1];
+                int remainingElements = cards.length - (i + 1);
+                System.arraycopy(cards, 0, arrDestination, 0, i);
+                System.arraycopy(cards, i + 1, arrDestination, i, remainingElements);
+            }
+        }
         return deletedCard;}
 
 }

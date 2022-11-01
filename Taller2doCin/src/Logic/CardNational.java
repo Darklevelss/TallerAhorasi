@@ -11,15 +11,16 @@ public class CardNational extends Card{
     @Override
     public double recharge(double charge) {
         this.residue+=charge+(charge*0.25);
+        this.minutes+=residue/VALUE_MINUTE;
+        this.residue-=minutes*VALUE_MINUTE;
         return this.residue;
     }
 
     @Override
     public boolean call(short minutes) {
-        if(minutes*VALUE_MINUTE<=residue){
-        this.residue-=minutes*VALUE_MINUTE;
-        this.minutes+=minutes;
-        return true;}
+        if(minutes<=this.minutes){
+            this.minutes-=minutes;
+            return true;}
         return false;
     }
 
@@ -29,5 +30,10 @@ public class CardNational extends Card{
 
     public void setOperator(Operator operator) {
         this.operator = operator;
+    }
+
+    @Override
+    public String toString() {
+        return "{ "+this.getNumber()+", "+this.getResidue()+", "+this.getOperator()+", "+this.getMinutes()+"}";
     }
 }

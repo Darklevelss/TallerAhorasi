@@ -12,14 +12,17 @@ public class CardInternational extends Card{
     @Override
     public double recharge(double charge) {
         this.residue+=charge;
+        this.minutes+=residue/VALUE_MINUTE;
+        this.residue-=minutes*VALUE_MINUTE;
         return this.residue;
     }
 
     @Override
     public boolean call(short minutes) {
-        this.residue-=minutes*VALUE_MINUTE;
-        this.minutes+=minutes;
-        return true;
+        if(minutes<=this.minutes){
+            this.minutes-=minutes;
+            return true;}
+        return false;
     }
     public float getPercentageDiscount() {
         return percentageDiscount;
@@ -29,4 +32,10 @@ public class CardInternational extends Card{
         this.percentageDiscount = percentageDiscount;
     }
 
+    @Override
+    public String toString() {
+
+
+         return "{ "+this.getNumber()+", "+this.getResidue()+", "+this.getPercentageDiscount()+", "+this.getMinutes()+"}";
+    }
 }

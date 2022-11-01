@@ -2,7 +2,7 @@ package Logic;
 
 
 
-public abstract class Card  implements ActionsCard{
+public abstract class Card  implements ActionsCard {
     private String number;
     protected short minutes;
     protected double residue;
@@ -10,8 +10,8 @@ public abstract class Card  implements ActionsCard{
     public Card(String number) {
 
         this.number = number;
-        this.minutes=0;
-        this.residue=0;
+        this.minutes = 0;
+        this.residue = 0;
     }
 
     public String getNumber() {
@@ -29,4 +29,5 @@ public abstract class Card  implements ActionsCard{
     public double getResidue() {
         return residue;
     }
+
 }

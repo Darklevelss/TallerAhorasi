@@ -3,21 +3,18 @@ package Runner;
 import Logic.*;
 
 import java.util.Arrays;
-import java.util.Random;
+
 
 public class Runner {
-
-
     public static void main(String[] args) {
-        ServiceCard service =new ServiceCard();
-        System.out.println(service.findCard("123"));
-        service.addCard(new CardInternational("123",21));
-        System.out.println(service.findCard("123"));
-        System.out.println(Arrays.toString(service.getCards()));
-        service.addCard(generatorN());
-        System.out.println(Arrays.toString(service.getCards()));
-        service.addCard(generatorN());
-        System.out.println(Arrays.toString(service.getCards()));
+        ServiceCard serviceCard=new ServiceCard();
+        serviceCard.addCard(new CardNational("123",Operator.CLARO));
+        serviceCard.recharge("123",1000);
+        serviceCard.addCard(new CardNational("12",Operator.CLARO));
+        serviceCard.addCard(new CardNational("11",Operator.CLARO));
+        serviceCard.deleteCard("12");
+        System.out.println(Arrays.toString(serviceCard.getCards()));
+        System.out.println(serviceCard.deleteCard(""));
     }
     private void menú(){
         System.out.println(">>>>>>menú<<<<<<<" +
@@ -26,19 +23,8 @@ public class Runner {
                 "3.borrar tarjetas" +
                 "4.salir ");
     }
-    public static Card generatorN(){
-        Random random=new Random();
-        String num= String.valueOf(random.nextInt(1000-1)+1);
-        Card generated= new CardNational(num,Operator.CLARO);
-        return generated;
-    }
 
 
-    public Card generatorI(){
-        Random random=new Random();
-        String num= String.valueOf(random.nextInt(1000-1)+1);
-        Card generated= new CardInternational(num,21);
-        return generated;
 
-    }
+
 }
