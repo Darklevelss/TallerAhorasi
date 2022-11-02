@@ -60,25 +60,20 @@ public class ServiceCard {
     public Card[] getCards(){
         Card[] clone=cards.clone();
         return clone ;}
-    public Card deleteCard(String number){
-        Card deletedCard=null;
-        int pos;
-        Card[]newArr;
-       /* for (var i=0;i<cards.length;i++){
-            if(cards[i].getNumber().equalsIgnoreCase(number)){
-                deletedCard=cards[i];
+    public Card deleteCard(String number) {
 
+        for (int i = 0; i < cards.length; i++)
+            if (number.equalsIgnoreCase(cards[i].getNumber())) {
+                Card removed = cards[i];
+                cards[i] = null;
+                for (int j = i; j < cards.length-1; j++) {
+                    cards[j] = cards[j + 1];
+                }
+                cards=Arrays.copyOf(cards,cards.length-1);
+
+                return removed;
             }
-        }*/
-        for (int i=0;i< cards.length;i++) {
-            if (cards[i].getNumber().equalsIgnoreCase(number)) {
 
-                Card[] arrDestination = new Card[cards.length - 1];
-                int remainingElements = cards.length - (i + 1);
-                System.arraycopy(cards, 0, arrDestination, 0, i);
-                System.arraycopy(cards, i + 1, arrDestination, i, remainingElements);
-            }
-        }
-        return deletedCard;}
-
+        return null;
+    }
 }
