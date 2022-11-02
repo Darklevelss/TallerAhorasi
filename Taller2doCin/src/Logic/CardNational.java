@@ -9,6 +9,9 @@ public class CardNational extends Card{
     }
 
     @Override
+    /***
+     * recarga y calcula los minutos
+     */
     public double recharge(double charge) {
         this.residue+=charge+(charge*0.25);
         this.minutes+=residue/VALUE_MINUTE;
@@ -17,6 +20,12 @@ public class CardNational extends Card{
     }
 
     @Override
+    /***
+     * sirve para llamar
+     * @param minutes para saber la duración de la llamada
+     *
+     * @return true o false dependiendo si se pudo hacer la llamada
+     */
     public boolean call(short minutes) {
         if(minutes<=this.minutes){
             this.minutes-=minutes;
